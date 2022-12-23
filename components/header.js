@@ -8,7 +8,7 @@ const Header = () => {
     <Box className={styles.container}>
       <Box className={styles.imagecontainer}>
         <Image
-          src='/custom.png'
+          src='/custom_outreach_ai.png'
           alt='customoutreach.ai'
           fill
           objectFit='contain'

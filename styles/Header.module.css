@@ -3,7 +3,7 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    border-bottom: 1.5px solid #1B263B;
+    border-bottom: 1.5px solid #283044;
 }
 
 .navlinks {
@@ -14,7 +14,7 @@
 }
 
 .button {
-    color: #0D1B2A;
+    color: #283044;
 }
 
 .imagecontainer {
