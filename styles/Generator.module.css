@@ -5,9 +5,26 @@
 }
 
 .ctatext {
+    padding: 0 2rem;
     width: 50vw;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.text {
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .form {
+    padding: 2rem 3rem;
     width: 50vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
 }
