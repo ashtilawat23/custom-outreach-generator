@@ -8,9 +8,14 @@ export default async function handler(req, res) {
       const session = await stripe.checkout.sessions.create({
         mode: 'payment',
         payment_method_types: ['card'],
-        line_items: req?.body?.items ?? [],
+        line_items: [
+          {
+            price: 'price_1MIkfAE3FP494hf6TMs1wPdb',
+            quantity: 1
+          }
+        ],
         success_url: `${req.headers.origin}/success?session_id={CHECKOUT_SESSION_ID}`,
-        cancel_url: `${req.headers.origin}/cart`,
+        cancel_url: `${req.headers.origin}`,
       });
 
       res.status(200).json(session);

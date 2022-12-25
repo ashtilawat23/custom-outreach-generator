@@ -2,14 +2,8 @@ import React from 'react'
 import styles from '../styles/Generator.module.css'
 import { Box } from '@mui/system'
 import { Typography, TextField, Button } from '@mui/material'
-import { loadStripe } from '@stripe/stripe-js'
+import getStripe from '../lib/get-stripe'
 import axios from 'axios'
-
-// Make sure to call `loadStripe` outside of a component’s render to avoid
-// recreating the `Stripe` object on every render.
-const stripePromise = loadStripe(
-  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
-);
 
 const Generator = () => {
 
@@ -17,12 +11,7 @@ const Generator = () => {
     // Create Stripe checkout
     const {
       data: { id },
-    } = await axios.post('/api/checkout_sessions', {
-      items: Object.entries(cartDetails).map(([_, { id, quantity }]) => ({
-        price: id,
-        quantity,
-      })),
-    });
+    } = await axios.post('/api/checkout_sessions');
 
     // Redirect to checkout
     const stripe = await getStripe();
@@ -37,7 +26,7 @@ const Generator = () => {
     }
 
     if (query.get('canceled')) {
-      console.log('Order canceled -- continue to shop around and checkout when you’re ready.');
+      console.log('Order canceled -- continue to shop around and checkout when you are ready.');
     }
   }, []);
 
