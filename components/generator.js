@@ -13,10 +13,21 @@ const stripePromise = loadStripe(
 
 const Generator = () => {
 
-  const submit = async() => {
-    console.log('hit');
-    axios.post('/api/checkout_sessions');
-  }
+  const redirectToCheckout = async () => {
+    // Create Stripe checkout
+    const {
+      data: { id },
+    } = await axios.post('/api/checkout_sessions', {
+      items: Object.entries(cartDetails).map(([_, { id, quantity }]) => ({
+        price: id,
+        quantity,
+      })),
+    });
+
+    // Redirect to checkout
+    const stripe = await getStripe();
+    await stripe.redirectToCheckout({ sessionId: id });
+  };
 
   React.useEffect(() => {
     // Check to see if this is a redirect back from Checkout
@@ -86,7 +97,7 @@ const Generator = () => {
             color='success'
             variant="outlined"
           />
-          <Button variant='contained' color='success' onClick={submit}>Generate</Button>
+          <Button variant='contained' color='success' onClick={redirectToCheckout}>Generate</Button>
         </Box>
     </Box>
   )
