@@ -1,32 +1,31 @@
 import React from 'react'
 import styles from '../styles/Header.module.css'
-import { Box, Button } from '@mui/material'
 import Image from 'next/image'
 import Link from 'next/link'
 
 const Header = () => {
   return (
-    <Box className={styles.container}>
-      <Box className={styles.imagecontainer}>
+    <div className={styles.container}>
+      <div className={styles.imagecontainer}>
         <Image
           src='/custom_outreach_ai.png'
           alt='customoutreach.ai'
           fill
           objectFit='cover'
         />
-      </Box>
-      <Box className={styles.navlinks}>
+      </div>
+      <div className={styles.navlinks}>
         <Link href='/' style={{ textDecoration:'none' }}>
-          <Button variant='text' className={styles.button}>Home</Button>
+          <button className={styles.button}>Home</button>
         </Link>
         <Link href='/about' style={{ textDecoration:'none' }}>
-          <Button variant='text' className={styles.button}>About</Button>
+          <button className={styles.button}>About</button>
         </Link>
         <Link href='/contact' style={{ textDecoration:'none' }}>
-          <Button variant='text' className={styles.button}>Contact</Button>
+          <button className={styles.button}>Contact</button>
         </Link>
-      </Box>
-    </Box>
+      </div>
+    </div>
   )
 }
 
